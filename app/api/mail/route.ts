@@ -1,4 +1,3 @@
-// import { EmailTemplate } from '../../../components/EmailTemplate';
 import Email from '@/emails';
 import { Resend } from 'resend';
 
