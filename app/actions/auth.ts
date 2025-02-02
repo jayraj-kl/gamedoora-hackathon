@@ -1,6 +1,7 @@
 "use server"
 
 import { signIn } from "@/auth"
+import { signOut } from "@/auth"
 import { AuthError } from "next-auth"
 import { redirect } from "next/navigation"
 
@@ -25,5 +26,19 @@ export async function handleGoogleLogin() {
       return redirect(`/error?error=${error.type}`)
     }
     throw error
+  }
+}
+
+export async function handleLogOut() {
+  console.log("Logging out")
+  try {
+    await signOut({
+      redirectTo: '/login',
+      redirect: true
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      throw error
+    }
   }
 }
